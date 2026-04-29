@@ -52,9 +52,11 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-[var(--site-bg)] border border-slate-700 w-full max-w-md rounded-lg overflow-hidden shadow-2xl">
-        <div className="flex justify-between items-center p-5 border-b border-[var(--text-color)]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+      <div className="bg-[var(--site-bg)] border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+
+        {/* HEADER - Fixed */}
+        <div className="flex justify-between items-center p-5 border-b border-[var(--text-color)] bg-[var(--site-bg)]">
           <h3 className="text-xl font-semibold text-[var(--text-color)]">
             {isEditing ? 'Update Roles' : 'Add New Member'}
           </h3>
@@ -63,7 +65,8 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
           </button>
         </div>
 
-        <form className="p-6 space-y-4" onSubmit={handleSubmit}>
+        <form className="flex-1 flex flex-col min-h-0" onSubmit={handleSubmit}>
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {!isEditing && (
             <>
               <div>
@@ -120,7 +123,7 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
               <p className="text-xs text-slate-500">{member?.email}</p>
             </div>
           )}
-
+        
           <div>
             <label className="block text-sm font-medium text-[var(--text-color)] mb-1">
               {isEditing ? 'Change Roles' : 'Roles'}
@@ -181,8 +184,9 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
               }}
             />
           </div>
+        </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-4 p-6 border-t border-slate-800 bg-[var(--site-bg)] shrink-0">
             <button
               type="button"
               onClick={onClose}

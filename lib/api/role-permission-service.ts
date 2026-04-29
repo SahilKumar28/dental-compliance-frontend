@@ -15,7 +15,16 @@ export const rolePermissionService = {
                 params: queryParams
             });
 
-            return response.data;
+            let data = response.data;
+
+            // Object ko array me convert karo
+            if (data && typeof data === 'object' && !Array.isArray(data)) {
+                data = Object.keys(data)
+                    .filter(key => !isNaN(Number(key)))
+                    .map(key => data[key]);
+            }
+
+            return Array.isArray(data) ? data : [];
         } catch (error: any) {
             if (error.response) {
                 console.error("Backend Error Data:", error.response.data);
