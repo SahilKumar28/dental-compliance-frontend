@@ -24,7 +24,8 @@ export interface PracticePayload {
   websites: string[];
   primary_email: string;
   logo?: File | null;
-  color_theme: string;
+  primary_color: string,
+    secondary_color: string,
   owner_last_name: string,
   owner_first_name: string,
   owner_email: string,
@@ -70,10 +71,10 @@ export const paraticeService = {
     const payload = {
       ...data,
       logo: logoUrl, // string URL
-      color_theme: { hex: data.color_theme }, // object
+      primary_color: data.primary_color ,
+      secondary_color: data.secondary_color,
       start_date: data.start_date, // "2025-04-28" string
       owner_id: 1,
-      practice_id: 0
     };
 
     delete payload.id;
@@ -95,10 +96,10 @@ export const paraticeService = {
     const payload = {
       ...data,
       logo: logoUrl,
-      color_theme: { hex: data.color_theme },
+      primary_color: data.primary_color,
+      secondary_color: data.secondary_color,
       start_date: data.start_date,
       owner_id: 1,
-      practice_id: 0
     };
 
     delete payload.logo_url;
