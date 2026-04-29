@@ -34,7 +34,7 @@ export default function Sidebar({
   const menuItems: MenuItem[] = [
     { key: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { key: "/admin/staff", label: "Staff", icon: Users },
-    { key: "/admin/practices", label: "Practices", icon: Building2 },
+    { key: "/admin/practice", label: "Practices", icon: Building2 },
   ];
 
   const showText =!isCollapsed || isMobileOpen;
