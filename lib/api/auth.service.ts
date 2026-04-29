@@ -1,4 +1,4 @@
-import apiClient from "@/lib/api/client";
+import apiClient from "@/lib/api/axios";
 import { setAccessToken } from "../auth/storage";
 import { useAuthStore } from "@/store/authStore";
 import { setSession } from "../auth/session";

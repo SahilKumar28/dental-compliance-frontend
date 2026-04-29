@@ -1,19 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation"; // add this
 import { ChevronLeft, LogOut, LayoutDashboard, Users, Building2 } from "lucide-react";
 
-type View = "dashboard" | "staff" | "practices";
-
 interface MenuItem {
-  key: View;
+  key: string; // change: ab path hoga, View nahi
   label: string;
   icon: React.ElementType;
 }
 
 interface SidebarProps {
-  activeView: View;
-  onSelect: (view: View) => void;
+  // activeView, onSelect hata do
   isCollapsed: boolean;
   setIsCollapsed: (value: boolean) => void;
   isMobileOpen: boolean;
@@ -23,7 +21,6 @@ interface SidebarProps {
 }
 
 export default function Sidebar({
-  activeView, onSelect,
   isCollapsed,
   setIsCollapsed,
   isMobileOpen,
@@ -31,17 +28,20 @@ export default function Sidebar({
   onLogout,
   isLoggingOut,
 }: SidebarProps) {
+  const router = useRouter();
+  const pathname = usePathname(); // current URL check karne ke liye
+
   const menuItems: MenuItem[] = [
-    { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { key: "staff", label: "Staff", icon: Users },
-    { key: "practices", label: "Practices", icon: Building2 },
+    { key: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { key: "/admin/staff", label: "Staff", icon: Users },
+    { key: "/admin/practices", label: "Practices", icon: Building2 },
   ];
 
   const showText =!isCollapsed || isMobileOpen;
 
-  const handleSelect = (view: View) => {
-    onSelect(view);
-    setIsMobileOpen(false); // close mobile menu on select
+  const handleSelect = (path: string) => {
+    router.push(path); // page navigate karo
+    setIsMobileOpen(false); // mobile menu close
   };
 
   return (
@@ -79,7 +79,7 @@ export default function Sidebar({
         <nav className="mt-4 flex-1 space-y-1 overflow-y-auto px-3">
           {menuItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeView === item.key;
+            const isActive = pathname === item.key; // URL se active check karo
 
             return (
               <button
@@ -89,7 +89,7 @@ export default function Sidebar({
                   group flex w-full items-center gap-3 rounded- px-4 py-3 transition-all
                   ${
                     isActive
-                     ? "border border-[var(--text-color)] bg-[var(--text-color)] text-[var(--text-white-color)]"
+                    ? "border border-[var(--text-color)] bg-[var(--text-color)] text-[var(--text-white-color)]"
                       : "text-[var(--text-color)] hover:bg-[var(--text-color)] hover:text-[var(--text-white-color)]"
                   }
                 `}

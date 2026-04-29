@@ -1,4 +1,4 @@
-import apiClient from "@/lib/api/client";
+import apiClient from "@/lib/api/axios";
 import { setSession, clearSession } from "./session";
 import { useAuthStore } from "@/store/authStore";
 import { resolvePortal } from "./resolvePortal";
