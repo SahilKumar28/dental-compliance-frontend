@@ -154,18 +154,18 @@ export default function TeamRolePermission() {
                 onClick={() => setSelectedRole(role)}
                 className={`p-4 rounded- border cursor-pointer transition-all duration-200 ${
                   isActive
-                   ? 'bg-[var(--text-color)] border-[var(--text-color)] shadow-lg shadow-indigo-500/20'
-                    : 'bg-[var(--site-bg)] border-[var(--text-color)] hover:border-slate-700'
+                   ? 'bg-secondary border-secondary shadow-lg shadow-indigo-500/20'
+                    : 'bg-primary border-secondary hover:border-slate-700'
                 }`}
               >
                 <div className="flex justify-between items-start">
                   <div className="flex gap-3">
                     <Shield
                       size={20}
-                      className={isActive? 'text-white' : 'text-[var(--text-color)]'}
+                      className={isActive? 'text-white' : 'text-secondary'}
                     />
                     <div>
-                      <h3 className={`font-semibold ${isActive? 'text-white' : 'text-[var(--text-color)]'}`}>
+                      <h3 className={`font-semibold ${isActive? 'text-white' : 'text-secondary'}`}>
                         {role.name}
                       </h3>
                       <p className={`text-xs mt-1 line-clamp-1 ${isActive? 'text-white' : 'text-gray-800'}`}>
@@ -183,9 +183,9 @@ export default function TeamRolePermission() {
                         openEditModal(role);
                       }}
                       size={16}
-                      className={`${isActive? 'text-white' : 'text-[var(--text-color)]'} hover:scale-110 transition-transform`}
+                      className={`${isActive? 'text-white' : 'text-secondary'} hover:scale-110 transition-transform`}
                     />
-                    <ChevronRight size={16} className={isActive? 'text-white' : 'text-[var(--text-color)]'} />
+                    <ChevronRight size={16} className={isActive? 'text-white' : 'text-secondary'} />
                   </div>
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function TeamRolePermission() {
           })}
         </div>
 
-        <div className="col-span-12 lg:col-span-8 bg-[var(--text-color)] rounded- border border-[var(--text-color)] p-6">
+        <div className="col-span-12 lg:col-span-8 bg-secondary rounded- border border-secondary p-6">
           {selectedRole? (
             <>
               <h2 className="text-xl font-bold text-white mb-1">{selectedRole.name}</h2>
@@ -205,11 +205,11 @@ export default function TeamRolePermission() {
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedRole.permissions?.map((perm) => (
-                    <div key={perm.id} className="flex items-center gap-3 p-4 bg-[var(--site-bg)] border border-[var(--site-bg)] rounded-">
-                      <div className="w-5 h-5 rounded bg-[var(--text-color)] flex items-center justify-center">
+                    <div key={perm.id} className="flex items-center gap-3 p-4 bg-primary border border-primary rounded-">
+                      <div className="w-5 h-5 rounded bg-secondary flex items-center justify-center">
                         <Check size={14} className="text-white" strokeWidth={3} />
                       </div>
-                      <p className="text-sm font-medium text-[var(--text-color)]">{perm.title}</p>
+                      <p className="text-sm font-medium text-secondary">{perm.title}</p>
                     </div>
                   ))}
                   {(!selectedRole.permissions || selectedRole.permissions.length === 0) && (

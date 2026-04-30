@@ -111,14 +111,14 @@ export default function RolePermissionModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-      <div className="bg-[var(--site-bg)] border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="bg-primary border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
 
         {/* HEADER - Fixed */}
-        <div className="flex justify-between items-center p-5 border-b border-[var(--text-color)] bg-[var(--site-bg)]">
-          <h3 className="text-xl font-bold text-[var(--text-color)]">
+        <div className="flex justify-between items-center p-5 border-b border-secondary bg-primary">
+          <h3 className="text-xl font-bold text-secondary">
             {role? 'Edit Role Permissions' : 'Create New Role'}
           </h3>
-          <button onClick={onClose} className="text-[var(--text-color)] hover:text-[var(--text-color)]/50">
+          <button onClick={onClose} className="text-secondary hover:text-secondary/50">
             <X size={24} />
           </button>
         </div>
@@ -130,9 +130,9 @@ export default function RolePermissionModal({
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[var(--text-color)] uppercase tracking-widest">Role Title</label>
+                <label className="text-xs font-bold text-secondary uppercase tracking-widest">Role Title</label>
                 <input
-                  className="w-full bg-[var(--site-bg)] border border-slate-700 rounded- px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full bg-primary border border-slate-700 rounded- px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={formData.name}
                   placeholder="e.g. Admin Manager"
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -140,9 +140,9 @@ export default function RolePermissionModal({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[var(--text-color)] uppercase tracking-widest">Description</label>
+                <label className="text-xs font-bold text-secondary uppercase tracking-widest">Description</label>
                 <input
-                  className="w-full bg-[var(--site-bg)] border border-slate-700 rounded- px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full bg-primary border border-slate-700 rounded- px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={formData.description}
                   placeholder="Brief role summary"
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
@@ -156,7 +156,7 @@ export default function RolePermissionModal({
               ) : (
                 Object.entries(groupedPermissions).map(([category, perms]) => (
                   <div key={category} className="space-y-3">
-                    <h5 className="text- font-black text-[var(--text-color)] uppercase tracking- border-l-2 border-indigo-500 pl-3">
+                    <h5 className="text- font-black text-secondary uppercase tracking- border-l-2 border-indigo-500 pl-3">
                       {category} Management
                     </h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -168,16 +168,16 @@ export default function RolePermissionModal({
                             onClick={() => togglePermission(perm.id)}
                             className={`group flex items-center gap-3 p-3.5 rounded- border cursor-pointer transition-all ${
                               active
-                        ? 'bg-[var(--text-color)] border-indigo-500/40 shadow-[0_0_15px_rgba(99,102,241,0.05)]'
-                              : 'bg-[var(--site-bg)] border-slate-800 hover:border-slate-700'
+                        ? 'bg-secondary border-indigo-500/40 shadow-[0_0_15px_rgba(99,102,241,0.05)]'
+                              : 'bg-primary border-slate-800 hover:border-slate-700'
                             }`}
                           >
                             <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
                               active? 'bg-[var(--text-white-color)] border-[var(--text-white-color)]' : 'border-slate-600 group-hover:border-slate-500'
                             }`}>
-                              {active && <Check size={12} className="text-[var(--text-color)]" strokeWidth={4} />}
+                              {active && <Check size={12} className="text-secondary" strokeWidth={4} />}
                             </div>
-                            <span className={`text-sm font-medium ${active? 'text-white' : 'text-[var(--text-color)]'}`}>
+                            <span className={`text-sm font-medium ${active? 'text-white' : 'text-secondary'}`}>
                               {perm.title}
                             </span>
                           </div>
@@ -191,17 +191,17 @@ export default function RolePermissionModal({
           </div>
 
           {/* FOOTER - Fixed */}
-          <div className="flex gap-4 p-6 border-t border-slate-800 bg-[var(--site-bg)] shrink-0">
+          <div className="flex gap-4 p-6 border-t border-slate-800 bg-primary shrink-0">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 rounded- border border-slate-700 text-[var(--text-color)] hover:text-white hover:bg-[var(--text-color)] transition-all"
+              className="flex-1 px-4 py-2.5 rounded- border border-slate-700 text-secondary hover:text-white hover:bg-secondary transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2.5 rounded- bg-[var(--text-color)] text-white hover:bg-indigo-500 transition-all font-medium"
+              className="flex-1 px-4 py-2.5 rounded- bg-secondary text-white hover:bg-indigo-500 transition-all font-medium"
             >
               {role? 'Update Access' : 'Create Role'}
             </button>

@@ -213,13 +213,13 @@ export default function TeamMember() {
             {/* 3 States: Loading | Empty | Data */}
             {loading ? (
                 // State 1: Loading - sirf loader
-                <div className="flex flex-col items-center justify-center py-24 px-6 text-center rounded- border border-[var(--text-color)] bg-[var(--site-bg)] min-h-">
+                <div className="flex flex-col items-center justify-center py-24 px-6 text-center rounded- border border-secondary bg-primary min-h-">
                     <Loader2 className="animate-spin text-indigo-500 mb-4" size={40} />
                     <p className="text-sm text-slate-400">Loading team members...</p>
                 </div>
             ) : members.length === 0 ? (
                 // State 2: Empty - search nahi, sirf empty state
-                <div className="flex flex-col items-center justify-center py-24 px-6 text-center rounded- border border-[var(--text-color)] bg-[var(--site-bg)]">
+                <div className="flex flex-col items-center justify-center py-24 px-6 text-center rounded- border border-secondary bg-primary">
                     <div className="w-20 h-20 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-5">
                         <Users className="text-indigo-400" size={32} />
                     </div>
@@ -244,20 +244,20 @@ export default function TeamMember() {
                     <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                         <div className="flex flex-wrap gap-3 flex-1 w-full">
                             <div className="relative flex-1 min-w- max-w-sm">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-color)]" size={18} />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary" size={18} />
                                 <input
                                     type="text"
                                     value={filters.search}
                                     onChange={handleSearch}
                                     placeholder="Search members..."
-                                    className="w-full bg-[var(--site-bg)] border border-[var(--text-color)] rounded- placeholder:text-[var(--text-color)] text-[var(--text-color)] py-2 pl-10 pr-4 focus:outline-none focus:border-indigo-500 text-sm"
+                                    className="w-full bg-primary border border-secondary rounded- placeholder:text-secondary text-secondary py-2 pl-10 pr-4 focus:outline-none focus:border-indigo-500 text-sm"
                                 />
                             </div>
 
                             <select
                                 value={filters.roles}
                                 onChange={(e) => setFilters(p => ({ ...p, roles: e.target.value, page: 1 }))}
-                                className="bg-[var(--site-bg)] border border-[var(--text-color)] rounded- px-4 py-2 outline-none cursor-pointer text-sm text-[var(--text-color)] focus:border-indigo-500"
+                                className="bg-primary border border-secondary rounded- px-4 py-2 outline-none cursor-pointer text-sm text-secondary focus:border-indigo-500"
                             >
                                 <option value="">All Roles</option>
                                 {roles.map((role) => (
@@ -270,7 +270,7 @@ export default function TeamMember() {
                             <select
                                 value={filters.status}
                                 onChange={(e) => setFilters(p => ({ ...p, status: e.target.value, page: 1 }))}
-                                className="bg-[var(--site-bg)] border border-[var(--text-color)] rounded- px-4 py-2 outline-none cursor-pointer text-sm text-[var(--text-color)] focus:border-indigo-500"
+                                className="bg-primary border border-secondary rounded- px-4 py-2 outline-none cursor-pointer text-sm text-secondary focus:border-indigo-500"
                             >
                                 <option value="">All Status</option>
                                 <option value="active">Active</option>
@@ -279,17 +279,17 @@ export default function TeamMember() {
                         </div>
                         <button
                             onClick={openAddModal}
-                            className="w-full md:w-auto bg-[var(--text-color)] hover:bg-indigo-500 hover:border-indigo-500 text-white px-4 py-2 border border-[var(--text-color)] rounded- flex items-center justify-center gap-2 transition-all font-medium text-sm"
+                            className="w-full md:w-auto bg-secondary hover:bg-indigo-500 hover:border-indigo-500 text-white px-4 py-2 border border-secondary rounded- flex items-center justify-center gap-2 transition-all font-medium text-sm"
                         >
                             <Plus size={18} /> Add Member
                         </button>
                     </div>
 
                     {/* Table Container */}
-                    <div className="overflow-hidden rounded- border border-[var(--text-color)] bg-[var(--site-bg)] relative">
+                    <div className="overflow-hidden rounded- border border-secondary bg-primary relative">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
-                                <thead className="bg-[var(--text-color)] text-white text-xs uppercase tracking-wider">
+                                <thead className="bg-secondary text-white text-xs uppercase tracking-wider">
                                     <tr>
                                         <th className="p-4 font-semibold whitespace-nowrap border-b border-slate-800">Name</th>
                                         <th className="p-4 font-semibold whitespace-nowrap border-b border-slate-800">Email</th>
@@ -301,18 +301,18 @@ export default function TeamMember() {
                                 </thead>
                                 <tbody className="divide-y divide-slate-800">
                                     {members.map((member) => (
-                                        <tr key={member.id} className="hover:bg-[var(--text-color)]/20 transition-colors group">
-                                            <td className="p-4 font-medium text-[var(--text-color)] whitespace-nowrap">
+                                        <tr key={member.id} className="hover:bg-secondary/20 transition-colors group">
+                                            <td className="p-4 font-medium text-secondary whitespace-nowrap">
                                                 {member.name || 'N/A'}
                                             </td>
-                                            <td className="p-4 text-[var(--text-color)] text-sm">{member.email}</td>
+                                            <td className="p-4 text-secondary text-sm">{member.email}</td>
                                             <td className="p-4">
                                                 <div className="flex gap-1 flex-wrap">
                                                     {member.roles?.length > 0 ? (
                                                         member.roles.map((role) => (
                                                             <span
                                                                 key={role.id}
-                                                                className="bg-[var(--text-color)] text-white px-2.5 py-0.5 rounded-md text-xs font-bold border border-indigo-500/20 uppercase tracking-tighter"
+                                                                className="bg-secondary text-white px-2.5 py-0.5 rounded-md text-xs font-bold border border-indigo-500/20 uppercase tracking-tighter"
                                                             >
                                                                 {role.name}
                                                             </span>
@@ -330,7 +330,7 @@ export default function TeamMember() {
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td className="p-4 text-[var(--text-color)] text-sm whitespace-nowrap">
+                                            <td className="p-4 text-secondary text-sm whitespace-nowrap">
                                                 {member.created_at ? new Date(member.created_at).toLocaleDateString() : 'N/A'}
                                             </td>
                                             <td className="p-4 text-right">
@@ -357,28 +357,28 @@ export default function TeamMember() {
                         </div>
 
                         {/* Pagination */}
-                        <div className="bg-[var(--site-bg)] p-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-slate-800">
-                            <p className="text-xs text-[var(--text-color)]">
-                                Showing <span className="text-[var(--text-color)]">{totalResults > 0 ? (filters.page - 1) * filters.per_page + 1 : 0}</span> to <span className="text-[var(--text-color)]">{Math.min(filters.page * filters.per_page, totalResults)}</span> of <span className="text-[var(--text-color)]">{totalResults}</span> results
+                        <div className="bg-primary p-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-slate-800">
+                            <p className="text-xs text-secondary">
+                                Showing <span className="text-secondary">{totalResults > 0 ? (filters.page - 1) * filters.per_page + 1 : 0}</span> to <span className="text-secondary">{Math.min(filters.page * filters.per_page, totalResults)}</span> of <span className="text-secondary">{totalResults}</span> results
                             </p>
 
                             <div className="flex items-center gap-2">
                                 <button
                                     disabled={filters.page === 1}
                                     onClick={() => setFilters(f => ({ ...f, page: f.page - 1 }))}
-                                    className="p-1.5 rounded- border border-[var(--text-color)] text-[var(--text-color)] hover:text-[var(--text-color)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-1.5 rounded- border border-secondary text-secondary hover:text-secondary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ChevronLeft size={18} />
                                 </button>
 
-                                <div className="bg-[var(--site-bg)] px-3 py-2 rounded- border border-slate-700 text-xs font-bold text-[var(--text-color)]">
+                                <div className="bg-primary px-3 py-2 rounded- border border-slate-700 text-xs font-bold text-secondary">
                                     {filters.page}
                                 </div>
 
                                 <button
                                     disabled={filters.page * filters.per_page >= totalResults}
                                     onClick={() => setFilters(f => ({ ...f, page: f.page + 1 }))}
-                                    className="p-1.5 rounded- border border-[var(--text-color)] text-[var(--text-color)] hover:text-[var(--text-color)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-1.5 rounded- border border-secondary text-secondary hover:text-secondary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ChevronRight size={18} />
                                 </button>

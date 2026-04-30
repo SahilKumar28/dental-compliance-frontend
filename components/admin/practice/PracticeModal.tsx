@@ -176,20 +176,20 @@ export default function PracticeModal({ isOpen, onClose, onSubmit, practice = nu
     };
 
     const inputClass = (hasError: boolean) =>
-        `w-full bg-[var(--site-bg)] border rounded-lg px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none text-sm disabled:opacity-60 disabled:cursor-not-allowed ${hasError ? 'border-red-500' : 'border-slate-700'
+        `w-full bg-primary border rounded-lg px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none text-sm disabled:opacity-60 disabled:cursor-not-allowed ${hasError ? 'border-red-500' : 'border-slate-700'
         }`;
 
-    const labelClass = "block text-sm font-medium text-[var(--text-color)] mb-1";
+    const labelClass = "block text-sm font-medium text-secondary mb-1";
     const errorClass = "text-xs text-red-400 mt-1";
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <div className="bg-[var(--site-bg)] border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-                <div className="flex justify-between items-center p-5 border-b border-[var(--text-color)] bg-[var(--site-bg)]">
-                    <h3 className="text-xl font-semibold text-[var(--text-color)]">
+            <div className="bg-primary border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+                <div className="flex justify-between items-center p-5 border-b border-secondary bg-primary">
+                    <h3 className="text-xl font-semibold text-secondary">
                         {isEditing ? 'Update Practice' : 'Add New Practice'}
                     </h3>
-                    <button onClick={onClose} className="text-[var(--text-color)] hover:text-[var(--text-color)]/50">
+                    <button onClick={onClose} className="text-secondary hover:text-secondary/50">
                         <X size={20} />
                     </button>
                 </div>
@@ -250,7 +250,7 @@ export default function PracticeModal({ isOpen, onClose, onSubmit, practice = nu
                             <div className="flex gap-2">
                                 <input
                                     type="color"
-                                    className="h-10 w-16 bg-[var(--site-bg)] border border-slate-700 rounded-lg cursor-pointer"
+                                    className="h-10 w-16 bg-primary border border-slate-700 rounded-lg cursor-pointer"
                                     value={formData.primary_color}
                                     onChange={(e) => setFormData({ ...formData, primary_color: e.target.value })}
                                 />
@@ -267,7 +267,7 @@ export default function PracticeModal({ isOpen, onClose, onSubmit, practice = nu
                             <div className="flex gap-2">
                                 <input
                                     type="color"
-                                    className="h-10 w-16 bg-[var(--site-bg)] border border-slate-700 rounded-lg cursor-pointer"
+                                    className="h-10 w-16 bg-primary border border-slate-700 rounded-lg cursor-pointer"
                                     value={formData.secondary_color}
                                     onChange={(e) => setFormData({ ...formData, secondary_color: e.target.value })}
                                 />
@@ -346,12 +346,12 @@ export default function PracticeModal({ isOpen, onClose, onSubmit, practice = nu
                                 type="file"
                                 accept="image/*"
                                 onChange={handleLogoChange}
-                                className="w-full text-sm text-[var(--text-color)] file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[var(--text-color)] file:text-white hover:file:bg-indigo-500 file:cursor-pointer"
+                                className="w-full text-sm text-secondary file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-secondary file:text-white hover:file:bg-indigo-500 file:cursor-pointer"
                             />
                         </div>
                     </div>
                     <div className="pt-4 border-t border-slate-700">
-                        <h4 className="text-sm font-semibold text-[var(--text-color)] mb-3">
+                        <h4 className="text-sm font-semibold text-secondary mb-3">
                             Owner Details {isEditing && <span className="text-xs font-normal text-slate-400">(Read only)</span>}
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -511,18 +511,18 @@ export default function PracticeModal({ isOpen, onClose, onSubmit, practice = nu
                         </button>
                     </div>
                 </form>
-                <div className="flex gap-4 px-6 py-6 sticky bottom-0 bg-[var(--site-bg)] border-t border-[var(--text-color)]">
+                <div className="flex gap-4 px-6 py-6 sticky bottom-0 bg-primary border-t border-secondary">
                     <button
                         type="button"
                         onClick={onClose}
-                        className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-[var(--text-color)] hover:text-white hover:bg-[var(--text-color)] transition-all"
+                        className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-secondary hover:text-white hover:bg-secondary transition-all"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={handleSubmit}
                         type="submit"
-                        className="flex-1 px-4 py-2.5 rounded-lg bg-[var(--text-color)] text-white hover:bg-indigo-500 transition-all font-medium"
+                        className="flex-1 px-4 py-2.5 rounded-lg bg-secondary text-white hover:bg-indigo-500 transition-all font-medium"
                     >
                         {isEditing ? 'Update Practice' : 'Create Practice'}
                     </button>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation"; // add this
 import { ChevronLeft, LogOut, LayoutDashboard, Users, Building2 } from "lucide-react";
+import { useAuthStore } from "@/store/authStore";
 
 interface MenuItem {
   key: string; // change: ab path hoga, View nahi
@@ -31,13 +32,37 @@ export default function Sidebar({
   const router = useRouter();
   const pathname = usePathname(); // current URL check karne ke liye
 
-  const menuItems: MenuItem[] = [
+  const { activePortalDetails } = useAuthStore()
+
+  const adminMenuItems: MenuItem[] = [
     { key: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { key: "/admin/staff", label: "Staff", icon: Users },
     { key: "/admin/practice", label: "Practices", icon: Building2 },
   ];
 
-  const showText =!isCollapsed || isMobileOpen;
+  const practiceMenuItems: MenuItem[] = [
+    { key: "/practice/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { key: "/practice/staff", label: "Staff", icon: Users },
+    { key: "/practice/learner", label: "Learners", icon: Building2 },
+  ];
+
+  const learnerMenuItems: MenuItem[] = [
+    { key: "/practice/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { key: "/practice/myCourse", label: "My Courses", icon: Users },
+  ];
+
+  let menuItems: any[] = []
+
+  if (activePortalDetails?.portal === 'admin') {
+    menuItems = adminMenuItems
+  }
+  else if (activePortalDetails?.portal === 'practice') {
+    menuItems = practiceMenuItems
+  }
+  else if (activePortalDetails?.portal === 'learner') {
+    menuItems = learnerMenuItems
+  }
+  const showText = !isCollapsed || isMobileOpen;
 
   const handleSelect = (path: string) => {
     router.push(path); // page navigate karo
@@ -56,9 +81,9 @@ export default function Sidebar({
       <aside
         className={`
           fixed inset-y-0 left-0 z-50 flex h-screen w-64 flex-col border-r border-gray-800/40 bg-[var(--bg-color)] transition-all duration-300
-          ${isMobileOpen? "translate-x-0" : "-translate-x-full"}
+          ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
           lg:sticky lg:top-0 lg:translate-x-0
-          ${isCollapsed? "lg:w-20" : "lg:w-64"}
+          ${isCollapsed ? "lg:w-20" : "lg:w-64"}
         `}
       >
         <div className="flex items-center gap-3 p-6">
@@ -70,7 +95,7 @@ export default function Sidebar({
             className="h-9 w-9 rounded- object-cover"
           />
           {showText && (
-            <span className="text-base font-bold tracking-wide text-[var(--text-color)]">
+            <span className="text-base font-bold tracking-wide text-secondary">
               Dental Compliance
             </span>
           )}
@@ -87,10 +112,9 @@ export default function Sidebar({
                 onClick={() => handleSelect(item.key)}
                 className={`
                   group flex w-full items-center gap-3 rounded- px-4 py-3 transition-all
-                  ${
-                    isActive
-                    ? "border border-[var(--text-color)] bg-[var(--text-color)] text-[var(--text-white-color)]"
-                      : "text-[var(--text-color)] hover:bg-[var(--text-color)] hover:text-[var(--text-white-color)]"
+                  ${isActive
+                    ? "border border-secondary bg-secondary text-[var(--text-white-color)]"
+                    : "text-secondary hover:bg-secondary hover:text-[var(--text-white-color)]"
                   }
                 `}
               >
@@ -112,18 +136,18 @@ export default function Sidebar({
             <LogOut size={18} className="shrink-0" />
             {showText && (
               <span className="text-sm">
-                {isLoggingOut? "Logging out..." : "Logout"}
+                {isLoggingOut ? "Logging out..." : "Logout"}
               </span>
             )}
           </button>
 
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden w-full items-center gap-3 rounded- px-4 py-2 text-[var(--text-color)] transition-all hover:bg-[var(--text-color)]/10 lg:flex"
+            className="hidden w-full items-center gap-3 rounded- px-4 py-2 text-secondary transition-all hover:bg-secondary/10 lg:flex"
           >
             <ChevronLeft
               size={18}
-              className={`shrink-0 ${isCollapsed? "rotate-180" : ""} transition-transform`}
+              className={`shrink-0 ${isCollapsed ? "rotate-180" : ""} transition-transform`}
             />
             {!isCollapsed && <span className="text-sm">Collapse</span>}
           </button>

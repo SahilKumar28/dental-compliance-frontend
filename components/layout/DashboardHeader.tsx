@@ -10,14 +10,14 @@ interface HeaderProps {
 }
 
 export default function Header({ onLogout, setIsMobileOpen }: HeaderProps) {
-  const { user, activePortal, setActivePortal } = useAuthStore();
+  const { user, activePortalDetails, setActivePortalDetails } = useAuthStore();
   const [open, setOpen] = useState(false);
 
   return (
     <header className="bg-primary h-14 flex items-center justify-between px-6 text-white border-b border-gray-700">
-      <button 
-        type="button" 
-        onClick={() => setIsMobileOpen(true)} 
+      <button
+        type="button"
+        onClick={() => setIsMobileOpen(true)}
         className="p-2 text-gray-400 lg:hidden"
         aria-label="Open menu"
       >
@@ -29,7 +29,7 @@ export default function Header({ onLogout, setIsMobileOpen }: HeaderProps) {
           onClick={() => setOpen(!open)}
           className="font-semibold bg-gray-800 px-3 py-1 rounded-md"
         >
-          {activePortal || "Role"} ⌄
+          {activePortalDetails?.active_role_name} ⌄
         </button>
 
         {open && (
@@ -38,12 +38,12 @@ export default function Header({ onLogout, setIsMobileOpen }: HeaderProps) {
               <div
                 key={role.role_id}
                 onClick={() => {
-                  setActivePortal(role.role_name);
+                  setActivePortalDetails({ actice_role_id: role.role_id, active_role_name: role.role_name, portal: role.portal, active_practice_id: role.practice_id, active_color_theme: role.color_theme });
                   setOpen(false);
                 }}
                 className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
               >
-                {role.role_name} {role.role_name === 'admin'? '' : `(${role.practice_name})`}
+                {role.role_name} {role.role_name === 'admin' ? '' : `(${role.practice_name})`}
               </div>
             ))}
           </div>
@@ -60,3 +60,5 @@ export default function Header({ onLogout, setIsMobileOpen }: HeaderProps) {
     </header>
   );
 }
+
+//{active_role_id: role.role_id, active_role}

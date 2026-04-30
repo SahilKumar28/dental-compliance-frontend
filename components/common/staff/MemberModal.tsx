@@ -53,14 +53,14 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-      <div className="bg-[var(--site-bg)] border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="bg-primary border border-slate-800 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
 
         {/* HEADER - Fixed */}
-        <div className="flex justify-between items-center p-5 border-b border-[var(--text-color)] bg-[var(--site-bg)]">
-          <h3 className="text-xl font-semibold text-[var(--text-color)]">
+        <div className="flex justify-between items-center p-5 border-b border-secondary bg-primary">
+          <h3 className="text-xl font-semibold text-secondary">
             {isEditing ? 'Update Roles' : 'Add New Member'}
           </h3>
-          <button onClick={onClose} className="text-[var(--text-color)] hover:text-[var(--text-color)]/50">
+          <button onClick={onClose} className="text-secondary hover:text-secondary/50">
             <X size={20} />
           </button>
         </div>
@@ -70,47 +70,47 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
           {!isEditing && (
             <>
               <div>
-                <label className="block text-sm font-medium text-[var(--text-color)] mb-1">First Name</label>
+                <label className="block text-sm font-medium text-secondary mb-1">First Name</label>
                 <input
                   type="text"
                   required
                   placeholder="First Name"
-                  className="w-full bg-[var(--site-bg)] border border-slate-700 rounded-lg px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full bg-primary border border-slate-700 rounded-lg px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={formData.first_name}
                   onChange={(e) => setFormData({...formData, first_name: e.target.value })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[var(--text-color)] mb-1">Last Name</label>
+                <label className="block text-sm font-medium text-secondary mb-1">Last Name</label>
                 <input
                   type="text"
                   required
                   placeholder="Last Name"
-                  className="w-full bg-[var(--site-bg)] border border-slate-700 rounded-lg px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full bg-primary border border-slate-700 rounded-lg px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={formData.last_name}
                   onChange={(e) => setFormData({...formData, last_name: e.target.value })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[var(--text-color)] mb-1">Email Address</label>
+                <label className="block text-sm font-medium text-secondary mb-1">Email Address</label>
                 <input
                   type="email"
                   required
                   placeholder="Email Address"
-                  className="w-full bg-[var(--site-bg)] border border-slate-700 rounded-lg px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full bg-primary border border-slate-700 rounded-lg px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value })}
                 />
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-[var(--text-color)]">Password</label>
+                <label className="mb-2 block text-sm font-medium text-secondary">Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={(e) => setFormData({...formData, password: e.target.value })}
                   required
                   placeholder="Enter password"
-                  className="w-full bg-[var(--site-bg)] border border-slate-700 rounded-lg px-4 py-2.5 text-[var(--text-color)] focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full bg-primary border border-slate-700 rounded-lg px-4 py-2.5 text-secondary focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
               </div>
             </>
@@ -125,7 +125,7 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
           )}
         
           <div>
-            <label className="block text-sm font-medium text-[var(--text-color)] mb-1">
+            <label className="block text-sm font-medium text-secondary mb-1">
               {isEditing ? 'Change Roles' : 'Roles'}
             </label>
             <Select
@@ -186,17 +186,17 @@ export default function MemberModal({ isOpen, onClose, onSubmit, member = null, 
           </div>
         </div>
 
-          <div className="flex gap-4 p-6 border-t border-slate-800 bg-[var(--site-bg)] shrink-0">
+          <div className="flex gap-4 p-6 border-t border-slate-800 bg-primary shrink-0">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-[var(--text-color)] hover:text-white hover:bg-[var(--text-color)] transition-all"
+              className="flex-1 px-4 py-2.5 rounded-lg border border-slate-700 text-secondary hover:text-white hover:bg-secondary transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2.5 rounded-lg bg-[var(--text-color)] text-white hover:bg-indigo-500 transition-all font-medium"
+              className="flex-1 px-4 py-2.5 rounded-lg bg-secondary text-white hover:bg-indigo-500 transition-all font-medium"
             >
               {isEditing ? 'Update Roles' : 'Create Member'}
             </button>

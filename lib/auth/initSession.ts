@@ -13,21 +13,11 @@ export async function initSession() {
 
     store.setUser(user);
 
-    const { portal, active_role_name, active_practice_id } = resolvePortal(user.roles);
-    console.log(portal, active_practice_id, active_role_name)
-    store.setActivePortal(portal);
+    const activePortalDetails = resolvePortal(user);
+    const { portal, active_role_name, active_practice_id, active_role_id, active_color_theme } = activePortalDetails
+    console.log(portal, active_practice_id, active_role_name, active_role_id, active_color_theme)
 
-    const matchedRole = user.roles.find((role: any) => {
-      return (
-        role.role_name === active_role_name &&
-        role.practice_id === active_practice_id
-      );
-    });
-
-    console.log(matchedRole?.theme)
-    if (matchedRole?.theme) {
-      store.setTheme(matchedRole.theme);
-    }
+    store.setActivePortalDetails(activePortalDetails)
 
 
   } catch (err) {

@@ -6,10 +6,11 @@ export type Role = {
     role_name: string;
     practice_id: number;
     portal: string,
-    practice_name: string
+    practice_name: string,
+    color_theme: ColorTheme
 };
 
-export type Theme = {
+export type ColorTheme = {
     primary: string,
     secondary: string,
 }
@@ -21,18 +22,24 @@ export type User = {
     roles: Role[]
 };
 
+export type ActivePortalDetails = {
+    portal: string,
+    active_practice_id: number,
+    actice_role_id: number,
+    active_role_name: string,
+    active_color_theme: { primary: string, secondary: string }
+}
+
 
 
 type AuthState = {
     user: User | null;
     setUser: (user: User | null) => void;
     logout: () => void;
-    activePortal: string | null,
-    setActivePortal: (portal: string) => void,
+    activePortalDetails: ActivePortalDetails | null,
+    setActivePortalDetails: (activePortalDetails: ActivePortalDetails) => void,
     isLoading: boolean,
     setIsLoading: (isLoading: boolean) => void,
-    theme: Theme | null,
-    setTheme: (theme: Theme) => void
 };
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -42,18 +49,15 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     logout: () => set({ user: null }),
 
-    activePortal: null,
+    activePortalDetails: null,
 
-    setActivePortal: (portal) => set({ activePortal: portal }),
+    setActivePortalDetails: (object) => {
+        set({ activePortalDetails: object }),
+            applyTheme(object.active_color_theme)
+    },
 
     isLoading: true,
 
     setIsLoading: (value) => set({ isLoading: value }),
 
-    theme: { primary: '', secondary: '' },
-
-    setTheme: (theme) => {
-        set({ theme });
-        applyTheme(theme); 
-    },
 }));

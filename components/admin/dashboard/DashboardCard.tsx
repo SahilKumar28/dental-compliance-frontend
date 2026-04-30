@@ -3,9 +3,8 @@
 import { useAuthStore } from "@/store/authStore";
 
 export default function DashboardCard() {
-  const user = useAuthStore((state) => state.user);
-  const activePortal = useAuthStore((state) => state.activePortal);
-  const isLoading = useAuthStore((state) => state.isLoading);
+
+  const {user, isLoading, activePortalDetails} = useAuthStore()
 
 
   if (isLoading) {
@@ -15,7 +14,7 @@ export default function DashboardCard() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>Welcome to {activePortal} portal, {user?.name}</p>
+      <p>Welcome to {activePortalDetails?.portal} portal, {user?.name}</p>
     </div>
   );
 }
