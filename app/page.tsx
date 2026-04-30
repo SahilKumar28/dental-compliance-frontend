@@ -5,8 +5,7 @@ import { redirect } from "next/navigation";
 
 export default function Home() {
 
-  const isLoading = useAuthStore((state) => state.isLoading);
-  const activePortal = useAuthStore((state) => state.activePortal);
+  const { isLoading, activePortalDetails } = useAuthStore()
 
   if (isLoading) {
     return <>
@@ -14,8 +13,8 @@ export default function Home() {
     </>
   }
 
-  if (activePortal === 'admin') redirect("/admin/dashboard")
-  else if (activePortal === 'practice') redirect("/practice/dashboard")
+  if (activePortalDetails?.portal === 'admin') redirect("/admin/dashboard")
+  else if (activePortalDetails?.portal === 'practice') redirect("/practice/dashboard")
   return <>
     No portal
   </>

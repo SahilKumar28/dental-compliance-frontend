@@ -3,6 +3,7 @@ import axios from "axios";
 // import { clearAuthSession, getStoredToken } from "@/features/auth/lib/storage";
 import { ENV } from "@/config/env";
 import { getAccessToken } from "../auth/storage";
+import { useAuthStore } from "@/store/authStore";
 
 const apiClient = axios.create({
   baseURL: ENV.API_URL,
@@ -23,6 +24,13 @@ apiClient.interceptors.request.use(
     const token = typeof window !== "undefined" ? getAccessToken() : null;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    const practice_id = useAuthStore.getState().activePortalDetails?.active_practice_id
+
+
+    if (practice_id) {
+      config.headers["x-practice-id"] = practice_id;
     }
 
     return config;
